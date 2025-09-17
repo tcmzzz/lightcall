@@ -1,0 +1,19 @@
+example/*/run
+log
+*.swp
+front/node_modules
+pb_data
+tmp
+main
+cmd/dev
+.aider*
+.env
+build
+lightcall
+
+# AI Related
+.claude
+.crush/
+GEMINI.md
+QWEN.md
+CRUSH.md

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cloudresp000001",
+    "type": "pre-call",
+    "name": "blacklist",
+    "result": {
+      "pass": true,
+      "msg": ""
+    },
+    "rawresp": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "pass": true
+      }
+    }
+  },
+  {
+    "id": "cloudresp000002",
+    "type": "pre-call",
+    "name": "card",
+    "result": {
+      "pass": true,
+      "msg": ""
+    },
+    "rawresp": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "sid": "some sid ....."
+      }
+    }
+  },
+  {
+    "id": "cloudresp000003",
+    "type": "pre-call",
+    "name": "blacklist",
+    "result": {
+      "pass": false,
+      "msg": "hit list"
+    },
+    "rawresp": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "pass": false
+      }
+    }
+  }
+]

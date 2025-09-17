@@ -1,0 +1,20 @@
+ring.dev.local {
+
+    tls /cert/ring.dev.local.pem /cert/ring.dev.local-key.pem
+
+    route /wscall/fs {
+        rewrite * /
+        reverse_proxy * freeswitch:7443 {
+		    transport http {
+                #tls_trusted_ca_certs /ca/rootCA.pem
+                #tls_server_name ring.dev.local
+		      tls_insecure_skip_verify
+		    }
+        }
+    }
+
+    route {
+        reverse_proxy /api/* http://backend:8090
+        reverse_proxy * http://frontend:5173
+    }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "dial",
+    "value": {
+      "caller": {
+        "affinity": true
+      }
+    }
+  },
+  {
+    "name": "privacy",
+    "value": {
+      "hideNumber": true
+    }
+  },
+  {
+    "name": "cloud",
+    "value": {
+      "addr": "https://ring.dev.local/api/mockcloud",
+      "appid": "my_appid",
+      "secret": "my_secret",
+      "lifecycle": {
+        "precall": {
+          "blacklist": true,
+          "flashCard": true
+        }
+      }
+    }
+  },
+  {
+    "name": "ice_servers",
+    "value": []
+  }
+]

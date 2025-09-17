@@ -1,0 +1,98 @@
+version: "2"
+run:
+  tests: false
+linters:
+  enable:
+    - asciicheck
+    - bidichk
+    - durationcheck
+    - forbidigo
+    - gocritic
+    - gosec
+    - makezero
+    - misspell
+    - nestif
+    - nilerr
+    - nilnil
+    - prealloc
+    - predeclared
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - unconvert
+  settings:
+    forbidigo:
+      forbid:
+        - pattern: fmt\.Errorf(# Please use errors\.Wrap\|Wrapf\|Errorf instead)?
+        - pattern: ioutil\.ReadDir(# Please use os\.ReadDir)?
+    gocritic:
+      disabled-checks:
+        - ifElseChain
+    gosec:
+      excludes:
+        - G401
+        - G402
+        - G404
+        - G501
+        - G505
+    revive:
+      confidence: 0.1
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: constant-logical-expr
+        - name: dot-imports
+        - name: error-return
+        - name: error-naming
+        - name: exported
+        - name: if-return
+        - name: increment-decrement
+        - name: var-naming
+        - name: var-declaration
+        - name: package-comments
+        - name: receiver-naming
+        - name: time-naming
+        - name: unexported-return
+        - name: errorf
+        - name: duplicated-imports
+        - name: modifies-value-receiver
+    staticcheck:
+      checks:
+        - "all"
+        - -S1000 # Use plain channel send or receive instead of single-case select
+        - -S1002 # should omit comparison to bool constant,
+        - -S1019 # Simplify make call by omitting redundant arguments
+        - -S1005 # Drop unnecessary use of the blank identifier
+        - -ST1003 # Poorly chosen identifier
+        - -ST1005 # Error strings should not be capitalized
+        - -QF1003 # could use tagged switch on provider
+        - -QF1008 # Omit embedded fields from selector expression
+        - -QF1012 # Use 'fmt.Fprintf(x, ...)' instead of 'x.Write(fmt.Sprintf(...))'
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - sql/app/
+      - example/dev/
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    gofmt:
+      simplify: false
+    goimports:
+      local-prefixes:
+        - lightcall
+  exclusions:
+    generated: lax
+    paths:
+      - sql/app/

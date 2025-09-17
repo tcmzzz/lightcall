@@ -1,0 +1,324 @@
+[
+  {
+    "id": "ddeevvtask00001",
+    "ext_id": "ddeevvtask00001",
+    "own": "ddeevvuser00001",
+    "contact": "张经理",
+    "callee": "8881111",
+    "desc": "## 联系人: 张经理\n\n**职位**: 技术主管\n\n\n\n### 行动计划\n\n- 介绍我们的产品\n\n- 尝试销售机会",
+    "activity": [
+      "ddeevvactive001",
+      "ddeevvactive002",
+      "ddeevvactive003",
+      "ddeevvactive004"
+    ],
+    "open": true
+  },
+  {
+    "id": "ddeevvtask00002",
+    "own": "ddeevvuser00002",
+    "contact": "孙经理",
+    "callee": "33333333333",
+    "desc": "## 联系人: 孙经理\n\n**职位**: 商务主管\n\n\n\n### 行动计划\n\n- 介绍我们的产品\n\n- 尝试销售机会",
+    "open": true,
+    "ext_id": "ddeevvtask00002"
+  },
+  {
+    "id": "ddeevvtask00003",
+    "own": "ddeevvuser00001",
+    "contact": "测试客户A",
+    "callee": "010-66778899",
+    "desc": "## 任务类型: 客户回访\n\n\n\n### 行动要点\n\n- 回访产品使用体验\n\n- 收集客户反馈",
+    "activity": [
+      "ddeevvactive005",
+      "ddeevvactive006",
+      "ddeevvactive007",
+      "ddeevvactive062",
+      "ddeevvactive063",
+      "ddeevvactive064",
+      "ddeevvactive065",
+      "ddeevvactive066"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00003"
+  },
+  {
+    "id": "ddeevvtask00004",
+    "own": "ddeevvuser00002",
+    "contact": "测试客户B",
+    "callee": "13900001111",
+    "desc": "## 任务类型: 客户回访\n\n\n\n### 行动要点\n\n- 收集产品改进建议\n\n- 了解客户需求变化",
+    "activity": [
+      "ddeevvactive008",
+      "ddeevvactive009",
+      "ddeevvactive067",
+      "ddeevvactive068",
+      "ddeevvactive069",
+      "ddeevvactive070",
+      "ddeevvactive071"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00004"
+  },
+  {
+    "id": "ddeevvtask00005",
+    "own": "ddeevvuser00001",
+    "contact": "技术部",
+    "callee": "010-66554433",
+    "desc": "## 任务类型: 技术支持\n\n\n\n### 行动要点\n\n- 诊断并解决技术故障\n\n- 提供技术支持服务",
+    "activity": [
+      "ddeevvactive010",
+      "ddeevvactive052",
+      "ddeevvactive053",
+      "ddeevvactive054",
+      "ddeevvactive055",
+      "ddeevvactive056"
+    ],
+    "open": false,
+    "ext_id": "ddeevvtask00005"
+  },
+  {
+    "id": "ddeevvtask00006",
+    "own": "ddeevvuser00003",
+    "contact": "王总监",
+    "callee": "021-68765432",
+    "desc": "## 任务类型: 方案洽谈\n\n\n\n### 项目名称\n\n智能仓储管理系统\n\n\n\n### 行动要点\n\n- 合作方案洽谈\n\n- 需求分析与确认",
+    "activity": [
+      "ddeevvactive011",
+      "ddeevvactive012",
+      "ddeevvactive013",
+      "ddeevvactive057",
+      "ddeevvactive058",
+      "ddeevvactive059",
+      "ddeevvactive060",
+      "ddeevvactive061"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00006"
+  },
+  {
+    "id": "ddeevvtask00007",
+    "own": "ddeevvuser00004",
+    "contact": "周经理",
+    "callee": "18812345678",
+    "desc": "## 任务类型: 方案洽谈\n\n\n\n### 项目名称\n\n自动化生产线\n\n\n\n### 行动要点\n\n- 跟进客户需求\n\n- 提供技术方案支持",
+    "activity": [
+      "ddeevvactive014",
+      "ddeevvactive015"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00007"
+  },
+  {
+    "id": "ddeevvtask00008",
+    "own": "ddeevvuser00001",
+    "contact": "李主任",
+    "callee": "0512-87654321",
+    "desc": "## 任务类型: 方案推广\n\n\n\n### 项目名称\n\n工业物联网解决方案\n\n\n\n### 行动要点\n\n- 推广解决方案\n\n- 介绍产品优势",
+    "activity": [
+      "ddeevvactive016",
+      "ddeevvactive017",
+      "ddeevvactive018"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00008"
+  },
+  {
+    "id": "ddeevvtask00009",
+    "own": "ddeevvuser00002",
+    "contact": "赵总",
+    "callee": "18600001111",
+    "desc": "## 任务类型: 采购洽谈\n\n\n\n### 产品名称\n\n光伏逆变器\n\n\n\n### 行动要点\n\n- 采购事宜洽谈\n\n- 产品规格确认",
+    "activity": [
+      "ddeevvactive019",
+      "ddeevvactive020"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00009"
+  },
+  {
+    "id": "ddeevvtask00010",
+    "own": "ddeevvuser00003",
+    "contact": "陈主管",
+    "callee": "0755-33221144",
+    "desc": "## 任务类型: 系统演示\n\n\n\n### 项目名称\n\n物流管理系统\n\n\n\n### 行动要点\n\n- 系统演示预约\n\n- 准备演示材料",
+    "activity": [
+      "ddeevvactive021",
+      "ddeevvactive022",
+      "ddeevvactive023"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00010"
+  },
+  {
+    "id": "ddeevvtask00011",
+    "own": "ddeevvuser00004",
+    "contact": "秦总工程师",
+    "callee": "029-87654321",
+    "desc": "## 任务类型: 方案讨论\n\n\n\n### 项目名称\n\n光伏电站场地勘测\n\n\n\n### 行动要点\n\n- 勘测方案讨论\n\n- 技术细节确认",
+    "activity": [
+      "ddeevvactive024",
+      "ddeevvactive025"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00011"
+  },
+  {
+    "id": "ddeevvtask00012",
+    "own": "ddeevvuser00001",
+    "contact": "魏经理",
+    "callee": "18900001111",
+    "desc": "## 任务类型: 技术确认\n\n\n\n### 项目名称\n\n设备技术参数\n\n\n\n### 行动要点\n\n- 技术参数确认\n\n- 设备规格核实",
+    "activity": [
+      "ddeevvactive026",
+      "ddeevvactive027"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00012"
+  },
+  {
+    "id": "ddeevvtask00013",
+    "own": "ddeevvuser00002",
+    "contact": "韩主管",
+    "callee": "0917-33445566",
+    "desc": "## 任务类型: 合同洽谈\n\n\n\n### 项目名称\n\n合同条款\n\n\n\n### 行动要点\n\n- 合同条款沟通\n\n- 法务事项确认",
+    "activity": [
+      "ddeevvactive028"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00013"
+  },
+  {
+    "id": "ddeevvtask00014",
+    "own": "ddeevvuser00003",
+    "contact": "冯总监",
+    "callee": "18711112222",
+    "desc": "## 任务类型: 项目管理\n\n\n\n### 项目名称\n\n项目进度计划\n\n\n\n### 行动要点\n\n- 制定进度计划\n\n- 项目节点确认",
+    "activity": [
+      "ddeevvactive029",
+      "ddeevvactive030"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00014"
+  },
+  {
+    "id": "ddeevvtask00015",
+    "own": "ddeevvuser00004",
+    "contact": "曹经理",
+    "callee": "18833334444",
+    "desc": "## 任务类型: 运输方案\n\n\n\n### 项目名称\n\n设备运输\n\n\n\n### 行动要点\n\n- 运输方案确认\n\n- 物流安排协调",
+    "activity": [
+      "ddeevvactive031"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00015"
+  },
+  {
+    "id": "ddeevvtask00016",
+    "own": "ddeevvuser00001",
+    "contact": "欧阳技术员",
+    "callee": "18955556666",
+    "desc": "## 任务类型: 团队协调\n\n\n\n### 项目名称\n\n安装调试\n\n\n\n### 行动要点\n\n- 团队沟通协调\n\n- 工作安排确认",
+    "activity": [
+      "ddeevvactive032",
+      "ddeevvactive033"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00016"
+  },
+  {
+    "id": "ddeevvtask00017",
+    "own": "ddeevvuser00002",
+    "contact": "林经理",
+    "callee": "0755-66778899",
+    "desc": "## 任务类型: 需求调研\n\n\n\n### 项目名称\n\n智能仓储系统\n\n\n\n### 行动要点\n\n- 需求调研\n\n- 用户需求分析",
+    "activity": [
+      "ddeevvactive034",
+      "ddeevvactive035",
+      "ddeevvactive036"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00017"
+  },
+  {
+    "id": "ddeevvtask00018",
+    "own": "ddeevvuser00003",
+    "contact": "黄主管",
+    "callee": "18812344321",
+    "desc": "## 任务类型: 演示准备\n\n\n\n### 项目名称\n\n物流管理系统\n\n\n\n### 行动要点\n\n- 演示材料准备\n\n- 系统环境搭建",
+    "activity": [
+      "ddeevvactive037",
+      "ddeevvactive038"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00018"
+  },
+  {
+    "id": "ddeevvtask00019",
+    "own": "ddeevvuser00004",
+    "contact": "周总监",
+    "callee": "020-87651234",
+    "desc": "## 任务类型: 设备选型\n\n\n\n### 项目名称\n\n仓储硬件设备\n\n\n\n### 行动要点\n\n- 设备选型讨论\n\n- 技术参数对比",
+    "activity": [
+      "ddeevvactive039",
+      "ddeevvactive040",
+      "ddeevvactive041"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00019"
+  },
+  {
+    "id": "ddeevvtask00020",
+    "own": "ddeevvuser00001",
+    "contact": "王经理",
+    "callee": "13500001111",
+    "desc": "## 任务类型: 方案确认\n\n\n\n### 项目名称\n\n系统集成\n\n\n\n### 行动要点\n\n- 集成方案确认\n\n- 技术接口协调",
+    "activity": [
+      "ddeevvactive042",
+      "ddeevvactive043"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00020"
+  },
+  {
+    "id": "ddeevvtask00021",
+    "own": "ddeevvuser00002",
+    "contact": "陈技术员",
+    "callee": "0769-55443322",
+    "desc": "## 任务类型: 技术调试\n\n\n\n### 项目名称\n\nAPI接口\n\n\n\n### 行动要点\n\n- 接口调试沟通\n\n- 技术问题解决",
+    "activity": [
+      "ddeevvactive044",
+      "ddeevvactive045",
+      "ddeevvactive046"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00021"
+  },
+  {
+    "id": "ddeevvtask00022",
+    "own": "ddeevvuser00003",
+    "contact": "梁总",
+    "callee": "13912345678",
+    "desc": "## 任务类型: 合同确认\n\n\n\n### 项目名称\n\n项目合同\n\n\n\n### 行动要点\n\n- 合同条款确认\n\n- 法务审核协调",
+    "activity": [
+      "ddeevvactive047",
+      "ddeevvactive048"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00022"
+  },
+  {
+    "id": "ddeevvtask00023",
+    "own": "ddeevvuser00004",
+    "contact": "郑主管",
+    "callee": "0755-77889900",
+    "desc": "## 任务类型: 培训安排\n\n\n\n### 项目名称\n\n系统上线培训\n\n\n\n### 行动要点\n\n- 培训计划安排\n\n- 培训材料准备",
+    "activity": [
+      "ddeevvactive049",
+      "ddeevvactive050",
+      "ddeevvactive051"
+    ],
+    "open": true,
+    "ext_id": "ddeevvtask00023"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ddeevvuser00001",
+    "avatar": "",
+    "email": "li@test.com",
+    "emailVisibility": true,
+    "name": "小李",
+    "password": "123123123",
+    "active": true,
+    "verified": true,
+    "isAdmin": true
+  },
+  {
+    "id": "ddeevvuser00002",
+    "avatar": "",
+    "email": "zhang@test.com",
+    "emailVisibility": true,
+    "name": "小张",
+    "password": "123123123",
+    "active": true,
+    "verified": true
+  },
+  {
+    "id": "ddeevvuser00003",
+    "avatar": "",
+    "email": "wang@test.com",
+    "emailVisibility": true,
+    "name": "小王",
+    "password": "123123123",
+    "active": true,
+    "verified": true
+  },
+  {
+    "id": "ddeevvuser00004",
+    "avatar": "",
+    "email": "zhou@test.com",
+    "emailVisibility": true,
+    "name": "小周",
+    "password": "123123123",
+    "verified": true
+  }
+]

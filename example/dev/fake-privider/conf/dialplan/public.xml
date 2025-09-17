@@ -1,0 +1,21 @@
+<include>
+    <context name="public">
+        <extension name="hangup_test" continue="true">
+            <condition field="destination_number" expression="^8881111321$">
+                <action application="hangup" data="NO_ANSWER"/>
+            </condition>
+        </extension>
+
+        <extension name="hold_music" continue="true">
+            <condition field="destination_number" expression="^.*$">
+                <action application="answer"/>
+                <action application="playback" data="local_stream://moh"/>
+                <!--
+                    <action application="playback" data="music/8000/danza-espanola-op-37-h-142-xii-arabesca.wav"/>
+                    <action application="playback" data="$${hold_music}"/>
+                -->
+                    <action application="hangup"/>
+                </condition>
+            </extension>
+        </context>
+    </include>

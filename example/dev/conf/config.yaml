@@ -1,0 +1,3 @@
+fsMasterFile:  "/cdr-csv/Master.csv"
+fsRecordDir: "/record"
+cdcFile:  "/cdc/cdc.log"

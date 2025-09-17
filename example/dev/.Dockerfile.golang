@@ -1,0 +1,18 @@
+FROM golang:1.25
+
+ARG GOPROXY="https://goproxy.cn"
+ENV GOPROXY=${GOPROXY}
+
+WORKDIR /build
+
+RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list.d/* \
+ && apt-get update \
+ && apt-get install -y rsync
+
+RUN go install github.com/air-verse/air@latest
+
+COPY . ./
+
+RUN ln -sfn  /usr/local/go/bin/* /usr/bin/
+
+RUN go mod tidy && go mod download && rm -rf /build

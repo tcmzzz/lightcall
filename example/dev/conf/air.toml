@@ -1,0 +1,55 @@
+root = "/build"
+tmp_dir = "/tmp"
+
+[build]
+  pre_cmd = [
+  "update-ca-certificates",
+  "go mod tidy", "rm -rf /tmp/*",
+  "scp ./example/dev/data/cdc.log /cdc/",
+  "scp /config.yaml /tmp/config.yaml "
+  ]
+  cmd = "CGO_ENABLED=0 go build -tags dev -o /tmp/lightcall ./cmd/lightcall/main.go"
+  bin = "/tmp/lightcall"
+  args_bin = ["serve", "--dev", "--dir=/tmp/pb_data", "--http=0.0.0.0:8090"]
+  delay = 1000
+  exclude_dir = ["front", "tmp", "fs-conf", "log", "pb_data", "assets", "example/dev/run", "build"]
+  exclude_file = []
+  exclude_regex = ["_test.go"]
+  exclude_unchanged = false
+  follow_symlink = false
+  full_bin = ""
+  include_dir = []
+  include_ext = ["go", "json", "tpl", "tmpl", "html"]
+  include_file = []
+  kill_delay = "0s"
+  log = "build-errors.log"
+  poll = false
+  poll_interval = 0
+  post_cmd = []
+  rerun = false
+  rerun_delay = 500
+  send_interrupt = false
+  stop_on_error = false
+
+[color]
+  app = ""
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
+  watcher = "cyan"
+
+[log]
+  main_only = false
+  time = true
+
+[misc]
+  clean_on_exit = false
+
+[proxy]
+  app_port = 0
+  enabled = false
+  proxy_port = 0
+
+[screen]
+  clear_on_rebuild = true
+  keep_scroll = true

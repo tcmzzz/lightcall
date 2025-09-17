@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ddeevvactive001",
+    "user": "ddeevvuser00001",
+    "comment": "和客户进行了沟通, 客户对产品很认可, 继续跟进",
+    "record": "",
+    "hook": [
+      "cloudresp000003"
+    ],
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive002",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "hook": [
+      "cloudresp000001",
+      "cloudresp000002"
+    ],
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive003",
+    "user": "ddeevvuser00002",
+    "comment": "和客户进行了沟通, 客户对产品价格有疑问, 继续跟进",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive004",
+    "user": "ddeevvuser00002",
+    "comment": "有明确采购意向, 后续进行商务对接",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive005",
+    "user": "ddeevvuser00001",
+    "comment": "电话回访未接通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive006",
+    "user": "ddeevvuser00001",
+    "comment": "成功接通，客户反馈良好",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive007",
+    "user": "ddeevvuser00001",
+    "comment": "记录客户提出的新需求",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive062",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive063",
+    "user": "ddeevvuser00001",
+    "comment": "发送产品改进方案",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive064",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive065",
+    "user": "ddeevvuser00001",
+    "comment": "更新客户需求文档",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive066",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive008",
+    "user": "ddeevvuser00002",
+    "comment": "电话沟通产品改进建议",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive009",
+    "user": "ddeevvuser00002",
+    "comment": "邮件发送改进方案文档",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive067",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive068",
+    "user": "ddeevvuser00002",
+    "comment": "准备技术演示材料",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive069",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive070",
+    "user": "ddeevvuser00002",
+    "comment": "整理客户反馈报告",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive071",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive010",
+    "user": "ddeevvuser00001",
+    "comment": "远程解决技术问题",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive052",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive053",
+    "user": "ddeevvuser00001",
+    "comment": "更新故障解决手册",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive054",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive055",
+    "user": "ddeevvuser00001",
+    "comment": "发送备件更换清单",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive056",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive011",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive012",
+    "user": "ddeevvuser00003",
+    "comment": "发送智能仓储方案PPT",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive013",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive057",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive058",
+    "user": "ddeevvuser00003",
+    "comment": "准备项目报价单",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive059",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive060",
+    "user": "ddeevvuser00003",
+    "comment": "发送系统部署方案",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive061",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive014",
+    "user": "ddeevvuser00004",
+    "comment": "现场考察生产线运行情况",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive015",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive016",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive017",
+    "user": "ddeevvuser00001",
+    "comment": "准备技术方案文档",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive018",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive019",
+    "user": "ddeevvuser00002",
+    "comment": "邮件发送产品目录",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive020",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive021",
+    "user": "ddeevvuser00003",
+    "comment": "预约演示时间",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive022",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive023",
+    "user": "ddeevvuser00003",
+    "comment": "发送演示环境账号",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive024",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive025",
+    "user": "ddeevvuser00004",
+    "comment": "发送场地勘测报告",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive026",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive027",
+    "user": "ddeevvuser00001",
+    "comment": "整理技术参数对比表",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive028",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive029",
+    "user": "ddeevvuser00003",
+    "comment": "制定甘特图初稿",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive030",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive031",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive032",
+    "user": "ddeevvuser00001",
+    "comment": "组建技术团队沟通群",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive033",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive034",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive035",
+    "user": "ddeevvuser00002",
+    "comment": "发送仓储需求调研问卷",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive036",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive037",
+    "user": "ddeevvuser00003",
+    "comment": "准备演示环境测试数据",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive038",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive039",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive040",
+    "user": "ddeevvuser00004",
+    "comment": "整理设备参数对比表",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive041",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive042",
+    "user": "ddeevvuser00001",
+    "comment": "绘制系统架构图",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive043",
+    "user": "ddeevvuser00001",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive044",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive045",
+    "user": "ddeevvuser00002",
+    "comment": "编写接口文档",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive046",
+    "user": "ddeevvuser00002",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive047",
+    "user": "ddeevvuser00003",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive048",
+    "user": "ddeevvuser00003",
+    "comment": "发送合同修订版",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive049",
+    "user": "ddeevvuser00004",
+    "comment": "制定培训计划表",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive050",
+    "user": "ddeevvuser00004",
+    "comment": "与客户进行了电话沟通",
+    "record": "",
+    "isCall": false
+  },
+  {
+    "id": "ddeevvactive051",
+    "user": "ddeevvuser00004",
+    "comment": "发送培训资料包",
+    "record": "",
+    "isCall": false
+  }
+]

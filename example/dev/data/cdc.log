@@ -1,0 +1,5 @@
+{"msg_op":"create","msg_type":"objective","event":{"ext_id":"obj-2024-001","title":"20250701#Q3客户回访计划","info":{"company":"ABC科技有限公司","background":"重点客户季度满意度调研"}}}
+{"msg_op":"create","msg_type":"task","event":{"objective_title": "20250701#Q3客户回访计划", "ext_id":"task-2024-087","own":"li@test.com","contact":"张经理","callee":"13800138000","desc":"确认季度订单需求"}}
+{"msg_op":"close","msg_type":"task","event":{"ext_id":"task-2024-087"}}
+{"msg_op":"update","msg_type":"objective","event":{"ext_id":"obj-2024-001","title":"20250701#Q3客户回访计划","info":{"company":"ABC科技有限公司(更新)","background":"重点客户季度满意度调研"}}}
+{"msg_op":"close","msg_type":"objective","event":{"ext_id":"obj-2024-001"}}

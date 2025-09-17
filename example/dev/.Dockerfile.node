@@ -1,0 +1,13 @@
+FROM node:20
+
+WORKDIR /build
+
+#RUN npm config set registry http://mirrors.cloud.tencent.com/npm/
+RUN npm config set registry https://registry.npmmirror.com
+
+RUN npm install -g pnpm
+RUN pnpm config set store-dir /pnpm-cache
+
+COPY ./front/package.json   /build/
+COPY ./front/pnpm-lock.yaml /build/
+RUN pnpm install && rm -f package.json pnpm-lock.yaml

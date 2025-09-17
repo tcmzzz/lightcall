@@ -1,0 +1,32 @@
+[
+  {
+    "id": "16ntm4xzl8c5unk",
+    "number": "1232123",
+    "outgw": "t88gsc1c77q0bqe",
+    "enable": true,
+    "tag": {
+      "city": "北京市",
+      "province": "北京市"
+    }
+  },
+  {
+    "id": "dewxshknqqe4014",
+    "number": "4319411",
+    "outgw": "t88gsc1c77q0bqe",
+    "enable": true,
+    "tag": {
+      "city": "西安市",
+      "province": "陕西省"
+    }
+  },
+  {
+    "id": "9ce26ch8fmh5h52",
+    "number": "3321233",
+    "outgw": "t88gsc1c77q0bqe",
+    "enable": true,
+    "tag": {
+      "city": "深圳市",
+      "province": "广东省"
+    }
+  }
+]

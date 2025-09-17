@@ -1,0 +1,125 @@
+[
+  {
+    "id": "t88gsc1c77q0bqe",
+    "name": "某讯科技出口",
+    "protocol": "SIP",
+    "addr": "192.168.66.30:5080",
+    "enable": true,
+    "options": {
+      "password": "432111",
+      "registry": false
+    },
+    "transcaller": [
+      {
+        "type": "prefix",
+        "param": [
+          "1#"
+        ]
+      }
+    ],
+    "transcallee": [
+      {
+        "type": "replace",
+        "param": [
+          "^010-",
+          "010"
+        ]
+      },
+      {
+        "type": "suffix",
+        "param": [
+          "321"
+        ]
+      }
+    ],
+    "status": {
+      "ok": true,
+      "error": "",
+      "updated": "2024-09-14 13:32"
+    }
+  },
+  {
+    "name": "某网科技出口",
+    "protocol": "SIP",
+    "addr": "127.0.0.1:5060",
+    "enable": true,
+    "options": {
+      "password": "432111",
+      "registry": false
+    },
+    "transcaller": [
+      {
+        "type": "prefix",
+        "param": [
+          "123"
+        ]
+      },
+      {
+        "type": "replace",
+        "param": [
+          "^0",
+          ""
+        ]
+      }
+    ],
+    "transcallee": [
+      {
+        "type": "prefix",
+        "param": [
+          "123"
+        ]
+      },
+      {
+        "type": "suffix",
+        "param": [
+          "123"
+        ]
+      }
+    ],
+    "status": {
+      "ok": false,
+      "error": "网络连接失败",
+      "updated": "2024-09-14 13:32"
+    }
+  },
+  {
+    "name": "某联通讯出口",
+    "protocol": "SIP",
+    "addr": "129.0.0.1:5060",
+    "enable": true,
+    "options": {
+      "password": "",
+      "registry": false
+    },
+    "transcaller": [
+      {
+        "type": "prefix",
+        "param": [
+          "123"
+        ]
+      },
+      {
+        "type": "replace",
+        "param": [
+          "^0",
+          ""
+        ]
+      }
+    ],
+    "transcallee": [
+      {
+        "type": "prefix",
+        "param": [
+          "123"
+        ]
+      },
+      {
+        "type": "suffix",
+        "param": [
+          "123"
+        ]
+      }
+    ],
+    "status": null
+  }
+]

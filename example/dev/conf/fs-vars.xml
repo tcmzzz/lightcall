@@ -1,0 +1,4 @@
+<include>
+  <X-PRE-PROCESS cmd="set" data="xml_rpc_password=worksnot"/>
+  <X-PRE-PROCESS cmd="set" data="external_ip=$${local_ip_v4}"/>
+</include>
