@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"lightcall/server/appender"
+	"github.com/tcmzzz/lightcall/server/appender"
 
 	"github.com/pkg/errors"
 	"github.com/pocketbase/pocketbase/core"

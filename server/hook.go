@@ -3,7 +3,7 @@ package server
 import (
 	"strings"
 
-	"lightcall/server/config"
+	"github.com/tcmzzz/lightcall/server/config"
 
 	"github.com/pocketbase/pocketbase/core"
 )

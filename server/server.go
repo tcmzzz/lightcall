@@ -1,13 +1,13 @@
 package server
 
 import (
-	"lightcall/server/appender"
-	"lightcall/server/appender/activity"
-	"lightcall/server/appender/change"
-	"lightcall/server/config"
-	"lightcall/server/tail"
-	"lightcall/server/tail/cdc"
-	"lightcall/server/tail/fs"
+	"github.com/tcmzzz/lightcall/server/appender"
+	"github.com/tcmzzz/lightcall/server/appender/activity"
+	"github.com/tcmzzz/lightcall/server/appender/change"
+	"github.com/tcmzzz/lightcall/server/config"
+	"github.com/tcmzzz/lightcall/server/tail"
+	"github.com/tcmzzz/lightcall/server/tail/cdc"
+	"github.com/tcmzzz/lightcall/server/tail/fs"
 
 	"github.com/pocketbase/pocketbase/core"
 )
