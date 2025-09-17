@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"lightcall/server/config"
+	"github.com/tcmzzz/lightcall/server/config"
 
 	"github.com/pkg/errors"
 	"github.com/pocketbase/pocketbase/core"

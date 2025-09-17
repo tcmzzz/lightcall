@@ -42,7 +42,7 @@ services:
         ipv4_address: 192.168.66.12
   freeswitch:
     restart: always
-    image: lightcall/freeswitch
+    image: ghcr.io/tcmzzz/freeswitch:v1.10.9
     volumes:
       - ./run/fs-cdr-csv:/usr/local/freeswitch/log/cdr-csv
       - ./run/fs-record:/usr/local/freeswitch/recordings

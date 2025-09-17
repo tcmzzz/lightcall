@@ -1,10 +1,10 @@
 package server
 
 import (
-	"lightcall/server/call"
-	"lightcall/server/cloud/mock"
-	"lightcall/server/cloud/precall"
-	"lightcall/server/config"
+	"github.com/tcmzzz/lightcall/server/call"
+	"github.com/tcmzzz/lightcall/server/cloud/mock"
+	"github.com/tcmzzz/lightcall/server/cloud/precall"
+	"github.com/tcmzzz/lightcall/server/config"
 
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"

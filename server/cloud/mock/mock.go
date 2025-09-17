@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"lightcall/server/cloud/precall"
+	"github.com/tcmzzz/lightcall/server/cloud/precall"
 
 	"github.com/pocketbase/pocketbase/core"
 )

@@ -4,5 +4,5 @@
 package app
 
 import (
-	_ "lightcall/example/dev/data"
+	_ "github.com/tcmzzz/lightcall/example/dev/data"
 )

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	precall "lightcall/server/cloud/precall"
-	"lightcall/server/config"
+	precall "github.com/tcmzzz/lightcall/server/cloud/precall"
+	"github.com/tcmzzz/lightcall/server/config"
 
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
