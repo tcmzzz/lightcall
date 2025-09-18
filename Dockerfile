@@ -6,9 +6,13 @@ RUN pnpm install
 RUN pnpm build
 
 FROM golang:1.25-alpine AS backend-builder
+
+ADD go.mod go.sum /
+RUN go mod download
+
 WORKDIR /app
-COPY ./ .
-RUN CGO_ENABLED=0 go build -o lightcall ./cmd/lightcall
+COPY . .
+RUN CGO_ENABLED=0 go build -o lightcall ./cmd/lightcall/main.go
 
 FROM alpine:latest
 ENV TZ=Asia/Shanghai
