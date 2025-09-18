@@ -1,9 +1,5 @@
 PWD    := $(shell pwd)
 CERT_DIR:= $(PWD)/example/dev/run/proxy-cert
-#UID:= $(shell id -u)
-#GID:= $(shell id -g)
-#TS:= $(shell date +%s)
-
 
 .PHONY: cert
 cert:

@@ -1,6 +1,8 @@
 package server
 
 import (
+	"os"
+
 	"github.com/tcmzzz/lightcall/server/call"
 	"github.com/tcmzzz/lightcall/server/cloud/mock"
 	"github.com/tcmzzz/lightcall/server/cloud/precall"
@@ -24,6 +26,10 @@ func initRouter(app core.App, config config.Provider) {
 	}
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
+
+		if _, err := os.Stat("./public"); err == nil {
+			se.Router.GET("/{path...}", apis.Static(os.DirFS("./public"), false))
+		}
 
 		g := se.Router.Group("/api/custom/call")
 

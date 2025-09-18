@@ -17,13 +17,21 @@ var Phone = {
     if (this.ua !== null) {
       return
     }
+    if (window.location.protocol !== 'https:') {
+      console.error('only support https.(microphone is not avaliable in http)')
+      return
+    }
 
-    const userId = pb.authStore.record.id
     const domain = window.location.hostname
-    const wssAddr = `wss:/${domain}/wscall/fs`
+    const port = window.location.port ? `:${window.location.port}` : ''
+
+    const wssAddr = `wss://${domain}${port}/callfs/wss`
+    const userId = pb.authStore.record.id
     const uri = `sip:${userId}@${domain}`
 
+    console.log('wssAddr:', wssAddr)
     const socket = new JsSIP.WebSocketInterface(wssAddr)
+
     const configuration = {
       sockets: [socket],
       register: false,

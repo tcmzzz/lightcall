@@ -1,7 +1,7 @@
 FROM ghcr.io/tcmzzz/freeswitch:v1.10.9
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN apt-get -yq install rsync
+RUN apt-get update && apt-get -yq install rsync && apt-get clean
 
 RUN rm -rf /usr/local/freeswitch/scripts/*
 

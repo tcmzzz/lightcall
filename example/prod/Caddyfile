@@ -1,0 +1,18 @@
+your.domain.com { # 使用自己的域名
+
+    #使用自己的证书或者让caddy自己申请
+	  tls /cert/your.domain.com.pem /cert/your.domain.com-key.pem
+
+	  route /callfs/wss {
+        rewrite * /
+        reverse_proxy * 127.0.0.1:7443 {
+		      transport http {
+		        tls_insecure_skip_verify
+		      }
+        }
+    }
+
+    route {
+        reverse_proxy * http://127.0.0.1:8090
+    }
+}
