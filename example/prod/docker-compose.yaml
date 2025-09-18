@@ -12,6 +12,8 @@ services:
     restart: always
     image: ghcr.io/tcmzzz/lightcall:master
     network_mode: "host"
+    environment:
+      - INIT_ADMIN_EMAIL=admin@lightcall.com # 设置初始化管理员邮箱
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ./run/pb_data:/app/pb_data
@@ -36,7 +38,19 @@ services:
       start_period: 10s
   fakeprovider: # 模拟运营商响应, 生产环境可去掉
     restart: always
-    network_mode: "host"
     build:
       context: ../dev/fake-privider
       dockerfile: ./Dockerfile
+    networks:
+      ring-dev-bridge:
+        ipv4_address: 192.168.66.30
+networks:
+  ring-dev-bridge:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv4: 'nat'
+      com.docker.network.bridge.enable_ip_masquerade: 'true'
+    ipam:
+      config:
+        - subnet: "192.168.66.0/24"
+          gateway: "192.168.66.1"

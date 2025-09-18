@@ -13,6 +13,8 @@ services:
       context: ../../
       dockerfile: ./example/dev/.Dockerfile.golang
     command: air -c /air.toml
+    environment:
+      - INIT_ADMIN_EMAIL=aaa@bb.com
     volumes:
       - ../../:/build # need write back collection snapshot
       - ./conf/air.toml:/air.toml:ro
