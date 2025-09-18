@@ -1,7 +1,7 @@
 FROM node:20-alpine AS frontend-builder
+RUN npm install -g pnpm
 WORKDIR /app
 COPY front/ .
-RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm build
 
@@ -12,10 +12,6 @@ RUN go mod download
 
 WORKDIR /app
 COPY . .
-RUN pwd
-RUN ls -la
-RUN ls -la ./cmd
-RUN ls -la ./cmd/lightcall/
 RUN CGO_ENABLED=0 go build -o lightcall ./cmd/lightcall/main.go
 
 FROM alpine:latest
