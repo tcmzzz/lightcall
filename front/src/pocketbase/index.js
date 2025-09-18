@@ -1,7 +1,10 @@
 import PocketBase from 'pocketbase'
 
-const domain = window.location.hostname
-export const pb = new PocketBase(`https://${domain}`)
+// const domain = window.location.hostname
+// export const pb = new PocketBase(`https://${domain}`)
+
+const baseUrl = window.location.origin
+export const pb = new PocketBase(baseUrl)
 pb.autoCancellation(false)
 
 pb.beforeSend = function (url, options) {

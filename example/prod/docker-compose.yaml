@@ -1,0 +1,42 @@
+services:
+  proxy:
+    image: caddy
+    network_mode: "host"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./testcert:/cert # 演示证书, 可使用实际证书或让Caddy申请免费证书
+    depends_on:
+      - backend
+      - freeswitch
+  backend:
+    restart: always
+    image: ghcr.io/tcmzzz/lightcall:master
+    network_mode: "host"
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./run/pb_data:/app/pb_data
+      - ./run/fs-cdr-csv:/cdr-csv:ro
+      - ./run/fs-record:/record:ro
+      - ./run/cdc:/app/cdc
+  freeswitch:
+    restart: always
+    image: ghcr.io/tcmzzz/freeswitch:v1.10.9
+    network_mode: "host"
+    volumes:
+      - ./run/fs-cdr-csv:/usr/local/freeswitch/log/cdr-csv
+      - ./run/fs-record:/usr/local/freeswitch/recordings
+      - ./run/fs-cert:/cert
+    environment:
+      - BACKEND_ADDR=http://127.0.0.1:8090
+    healthcheck:
+      test: ["CMD-SHELL", "fs_cli -x 'sofia status profile internal' | grep wss"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+  fakeprovider: # 模拟运营商响应, 生产环境可去掉
+    restart: always
+    network_mode: "host"
+    build:
+      context: ../dev/fake-privider
+      dockerfile: ./Dockerfile
