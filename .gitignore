@@ -1,15 +1,14 @@
-example/*/run
-log
+# tmp file
 *.swp
+
+# running file
+example/*/run
+
+# front modules
 front/node_modules
-pb_data
-tmp
-main
-cmd/dev
-.aider*
-.env
-build
-lightcall
+
+# local build
+./build
 
 # AI Related
 .claude
