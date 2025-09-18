@@ -7,7 +7,7 @@ RUN pnpm build
 
 FROM golang:1.25-alpine AS backend-builder
 WORKDIR /app
-COPY . .
+COPY ./ .
 RUN CGO_ENABLED=0 go build -o lightcall ./cmd/lightcall
 
 FROM alpine:latest
