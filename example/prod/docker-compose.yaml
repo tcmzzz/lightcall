@@ -36,7 +36,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-  fakeprovider: # 模拟运营商响应, 生产环境可去掉
+  # 模拟运营商 BEGIN. 仅用于演示, 生产环境去掉
+  fakeprovider:
     restart: always
     build:
       context: ../dev/fake-privider
@@ -54,3 +55,4 @@ networks:
       config:
         - subnet: "192.168.66.0/24"
           gateway: "192.168.66.1"
+  # 模拟运营商 END. 仅用于演示, 生产环境去掉
