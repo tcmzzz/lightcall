@@ -1,12 +1,11 @@
-# 生产环境部署指南
-
 ## 设置环境变量
 
-在启动服务之前，需要设置管理员邮箱环境变量：
+在启动服务之前，需要:
 
-```bash
-export INIT_ADMIN_EMAIL=admin@yourdomain.com
-```
+1. 在`docker-compose.yaml` 里设置管理员邮箱环境变量 `INIT_ADMIN_EMAIL`
+2. 配置证书. 修改`Caddyfile`, 解析域名至Caddy服务器让其自动获取证书, 或者配置已有的证书
+3. `docker-compose.yaml` 中 模拟运营商的配置 仅用于演示, 不需要可以去掉
+
 
 ## 启动服务
 
@@ -21,14 +20,9 @@ docker compose up -d
 服务启动后，系统会自动生成管理员账户和密码。可以通过以下命令查看：
 
 ```bash
-docker compose logs | grep "Superuser created successfully"
+docker compose logs | grep "password"
 ```
 
-或者：
-
-```bash
-docker compose logs backend | grep "Superuser created successfully"
-```
 
 你将看到类似以下的输出：
 ```
