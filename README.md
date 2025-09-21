@@ -1,4 +1,6 @@
-![LightCall](https://repository-images.githubusercontent.com/1058584358/e823ff36-405c-4c5c-8132-334fb3cc8ff2)
+<p align="center">
+    <img width="650" alt="LightCall Banner" src="https://repository-images.githubusercontent.com/1058584358/e823ff36-405c-4c5c-8132-334fb3cc8ff2" />
+</p>
 
 LightCall 旨在提供一个简单、高效且易于维护的外呼解决方案，适合小型团队、需要与内部系统集成的场景。
 
