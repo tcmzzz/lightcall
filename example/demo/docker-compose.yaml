@@ -2,9 +2,10 @@ services:
   proxy:
     image: caddy
     network_mode: "host"
+    environment:
+      - DOMAIN=${DOMAIN}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./testcert:/cert # 演示证书, 可使用实际证书或让Caddy申请免费证书
     depends_on:
       - backend
       - freeswitch
@@ -13,7 +14,7 @@ services:
     image: ghcr.io/tcmzzz/lightcall:master
     network_mode: "host"
     environment:
-      - INIT_ADMIN_EMAIL=admin@lightcall.com # 设置初始化管理员邮箱
+      - INIT_ADMIN_EMAIL=${INIT_ADMIN_EMAIL}
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ./run/pb_data:/app/pb_data
@@ -36,9 +37,11 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-  # 模拟运营商 BEGIN. 仅用于演示, 生产环境去掉
+  # 模拟运营商服务，仅在演示环境中启动
   fakeprovider:
     restart: always
+    profiles:
+      - demo
     build:
       context: ../dev/fake-privider
       dockerfile: ./Dockerfile
@@ -55,4 +58,3 @@ networks:
       config:
         - subnet: "192.168.66.0/24"
           gateway: "192.168.66.1"
-  # 模拟运营商 END. 仅用于演示, 生产环境去掉
