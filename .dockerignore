@@ -1,4 +1,4 @@
-example
 .git
+example/*/run
 front/node_modules
 sql/app/dev-*

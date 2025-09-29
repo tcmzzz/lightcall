@@ -34,7 +34,7 @@ services:
     build:
       context: ../../
       dockerfile: ./example/dev/.Dockerfile.node
-    command: pnpm dev --host 0.0.0.0
+    command: sh -c "pnpm install && pnpm dev --host 0.0.0.0"
     environment:
       __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS: "ring.dev.local"
     volumes:
