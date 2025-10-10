@@ -12,6 +12,7 @@ require (
 )
 
 require (
+	github.com/k0kubun/pp/v3 v3.5.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pocketbase/dbx v1.11.0
 	github.com/spf13/viper v1.21.0

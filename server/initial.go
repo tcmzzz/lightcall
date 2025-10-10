@@ -1,26 +1,57 @@
 package server
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
+	"text/template"
 
+	"github.com/k0kubun/pp/v3"
+	"github.com/pkg/errors"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/security"
 )
 
-func loadDefaultAdmin(app core.App) string {
-	adminEmail := os.Getenv("INIT_ADMIN_EMAIL")
+// InitVars contains variables for template substitution during initialization
+type InitVars struct {
+	AdminEmail    string
+	AdminID       string
+	HasIceServers bool
+	IceURLs       string
+	IceUsername   string
+	IceCredential string
+}
+
+func makeInitVars() InitVars {
+	adminEmail := os.Getenv("ADMIN_EMAIL")
+	if adminEmail == "" {
+		panic("INIT_ADMIN_EMAIL not set")
+	}
+
+	iceURLs := os.Getenv("ICE_URLS")
+	hasIceServers := iceURLs != ""
+
+	return InitVars{
+		AdminEmail:    adminEmail,
+		HasIceServers: hasIceServers,
+		IceURLs:       iceURLs,
+		IceUsername:   os.Getenv("ICE_USERNAME"),
+		IceCredential: os.Getenv("ICE_CREDENTIAL"),
+	}
+}
+
+func loadDefaultAdmin(app core.App, vars InitVars) string {
+	adminEmail := vars.AdminEmail
 
 	if adminEmail == "" {
-		app.Logger().Info("INIT_ADMIN_EMAIL not set, skipping admin creation")
-		panic("INIT_ADMIN_EMAIL not set, skipping admin creation")
+		app.Logger().Info("AdminEmail not set, skipping admin creation")
+		panic("AdminEmail not set, skipping admin creation")
 	}
 
 	adminPassword := security.RandomString(12)
 
-	// Create PocketBase superuser
 	superusers, err := app.FindCollectionByNameOrId(core.CollectionNameSuperusers)
 	if err != nil {
 		app.Logger().Error("Failed to find superusers collection", "error", err)
@@ -46,7 +77,6 @@ func loadDefaultAdmin(app core.App) string {
 		app.Logger().Info("Superuser already exists", "email", adminEmail)
 	}
 
-	// Create regular user with random password
 	userEmail := adminEmail
 	user, err := app.FindFirstRecordByData("users", "email", userEmail)
 	if err != nil || user == nil {
@@ -63,7 +93,6 @@ func loadDefaultAdmin(app core.App) string {
 		user.Set("password", password)
 		user.Set("passwordConfirm", password)
 
-		// Extract name from email (part before @)
 		name := userEmail
 		if idx := strings.Index(userEmail, "@"); idx > 0 {
 			name = userEmail[:idx]
@@ -87,9 +116,18 @@ func loadDefaultAdmin(app core.App) string {
 	return user.Id
 }
 
-func loadDefaultData(app core.App, collectionName string, rawData string, adminID string) {
-	// Replace ADMIN_ID placeholder with actual admin ID
-	processedRawData := strings.ReplaceAll(rawData, "ADMIN_ID", adminID)
+func loadDefaultData(app core.App, collectionName string, rawData string, vars InitVars) {
+	tmpl, err := template.New(collectionName).Parse(rawData)
+	if err != nil {
+		panic("Failed to parse template for collection " + collectionName + ": " + err.Error())
+	}
+
+	var buf bytes.Buffer
+	if err := tmpl.Execute(&buf, vars); err != nil {
+		panic("Failed to execute template for collection " + collectionName + ": " + err.Error())
+	}
+
+	processedRawData := buf.String()
 
 	objs := []map[string]any{}
 	if err := json.Unmarshal([]byte(processedRawData), &objs); err != nil {
@@ -102,7 +140,6 @@ func loadDefaultData(app core.App, collectionName string, rawData string, adminI
 	}
 
 	for _, obj := range objs {
-		// Directly create new record without checking if it exists
 		record := core.NewRecord(col)
 		record.Load(obj)
 		if err := app.Save(record); err != nil {
@@ -112,6 +149,36 @@ func loadDefaultData(app core.App, collectionName string, rawData string, adminI
 	}
 }
 
+func checkInitFlag(app core.App) (bool, error) {
+	record, err := app.FindFirstRecordByData("config", "name", "initial")
+	if err != nil {
+		return false, err
+	}
+
+	return record.GetString("value") == "true", nil
+}
+
+func saveInitFlag(app core.App) error {
+	col, err := app.FindCollectionByNameOrId("config")
+	if err != nil {
+		return errors.Wrap(err, "failed to find config collection")
+	}
+
+	initialRecord, err := app.FindFirstRecordByData("config", "name", "initial")
+	if err != nil || initialRecord == nil {
+		initialRecord = core.NewRecord(col)
+		initialRecord.Set("name", "initial")
+	}
+
+	initialRecord.Set("value", "true")
+	if err := app.Save(initialRecord); err != nil {
+		return errors.Wrap(err, "failed to mark initialization as complete")
+	}
+
+	app.Logger().Info("Initialization completed and marked as complete")
+	return nil
+}
+
 func initData(app core.App) {
 
 	if app.IsDev() {
@@ -119,34 +186,34 @@ func initData(app core.App) {
 	}
 
 	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
-		record, err := e.App.FindFirstRecordByData("config", "name", "initial")
-		if err == nil && record.GetString("value") == "true" {
+		initialized, err := checkInitFlag(e.App)
+		if err != nil {
+			e.App.Logger().Debug("Initialization flag not found, proceeding with initialization")
+		} else if initialized {
 			e.App.Logger().Info("skip initial data, already loaded")
 			return e.Next()
 		}
 
-		adminID := loadDefaultAdmin(e.App)
-		loadDefaultData(app, "config", rawInitConfig, adminID)
-		loadDefaultData(e.App, "outgw", rawOutgwData, adminID)
-		loadDefaultData(e.App, "number", rawNumberData, adminID)
-		loadDefaultData(e.App, "task", rawTaskData, adminID)
-		loadDefaultData(e.App, "objective", rawObjectiveData, adminID)
+		vars := makeInitVars()
+		adminID := loadDefaultAdmin(e.App, vars)
 
-		col, err := e.App.FindCollectionByNameOrId("config")
-		if err != nil {
-			panic("Failed to find config collection: " + err.Error())
-		}
+		vars.AdminID = adminID
+		pp.Println(vars)
 
-		initialRecord, err := e.App.FindFirstRecordByData("config", "name", "initial")
-		if err != nil || initialRecord == nil {
-			initialRecord = core.NewRecord(col)
-			initialRecord.Set("name", "initial")
-		}
-		initialRecord.Set("value", "true")
-		if err := e.App.Save(initialRecord); err != nil {
-			panic("Failed to mark initialization as complete: " + err.Error())
+		loadDefaultData(e.App, "config", rawInitConfig, vars)
+		loadDefaultData(e.App, "outgw", rawOutgwData, vars)
+		loadDefaultData(e.App, "number", rawNumberData, vars)
+		loadDefaultData(e.App, "task", rawTaskData, vars)
+		loadDefaultData(e.App, "objective", rawObjectiveData, vars)
+
+		if vars.HasIceServers {
+			loadDefaultData(e.App, "config", rawIceEnvConfig, vars)
 		} else {
-			e.App.Logger().Info("Initialization completed and marked as complete")
+			loadDefaultData(e.App, "config", rawIceEmptyConfig, vars)
+		}
+
+		if err := saveInitFlag(e.App); err != nil {
+			panic("Failed to save initialization flag: " + err.Error())
 		}
 
 		return e.Next()
@@ -183,10 +250,6 @@ var rawInitConfig = `
         }
       }
     }
-  },
-  {
-    "name": "ice_servers",
-    "value": []
   }
 ]
 `
@@ -242,9 +305,33 @@ var rawTaskData = `
     "callee": "1234567",
     "desc": "这是一个示例任务，用于演示系统功能",
     "open": true,
-	  "own": "ADMIN_ID",
+	  "own": "{{.AdminID}}",
     "id": "exampletask0001",
     "ext_id": "exampletask0001"
+  }
+]
+`
+
+var rawIceEmptyConfig = `
+[
+  {
+    "name": "ice_servers",
+    "value": []
+  }
+]
+`
+
+var rawIceEnvConfig = `
+[
+  {
+    "name": "ice_servers",
+    "value": [
+      {
+        "urls": "{{.IceURLs}}",
+        "username": "{{.IceUsername}}",
+        "credential": "{{.IceCredential}}"
+      }
+    ]
   }
 ]
 `

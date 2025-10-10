@@ -4,7 +4,7 @@ CERT_DIR:= $(PWD)/example/dev/run/proxy-cert
 .PHONY: cert
 cert:
 	mkdir -p $(CERT_DIR)
-	cd $(CERT_DIR) && CAROOT=$(CERT_DIR) mkcert ring.dev.local
+	cd $(CERT_DIR) && CAROOT=$(CERT_DIR) mkcert lightcall.dev.local
 	CAROOT=$(CERT_DIR) mkcert -install #Install the local CA in the system trust store.
 
 .PHONY: img
