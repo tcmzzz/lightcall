@@ -1,12 +1,12 @@
-ring.dev.local {
-	tls /cert/ring.dev.local.pem /cert/ring.dev.local-key.pem
+lightcall.dev.local {
+	tls /cert/lightcall.dev.local.pem /cert/lightcall.dev.local-key.pem
 
 	route /callfs/wss {
 		rewrite * /
 		reverse_proxy * freeswitch:7443 {
 			transport http {
-				#tls_trusted_ca_certs /ca/rootCA.pem
-				#tls_server_name ring.dev.local
+				#tls_trusted_ca_certs /cert/rootCA.pem
+				#tls_server_name lightcall.dev.local
 				tls_insecure_skip_verify
 			}
 		}

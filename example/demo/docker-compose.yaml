@@ -14,7 +14,10 @@ services:
     image: ghcr.io/tcmzzz/lightcall:master
     network_mode: "host"
     environment:
-      - INIT_ADMIN_EMAIL=${INIT_ADMIN_EMAIL}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ICE_URLS=${ICE_URLS}
+      - ICE_USERNAME=${ICE_USERNAME}
+      - ICE_CREDENTIAL=${ICE_CREDENTIAL}
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ./run/pb_data:/app/pb_data
