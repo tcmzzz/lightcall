@@ -44,11 +44,8 @@ services:
     command: ["--log-file=stdout"]
     volumes:
       - ./turnserver.conf:/etc/coturn/turnserver.conf
-  # 模拟运营商服务，仅在演示环境中启动
   fakeprovider:
     restart: always
-    profiles:
-      - demo
     build:
       context: ./fake-provider
       dockerfile: ./Dockerfile

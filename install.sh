@@ -413,7 +413,9 @@ install_files() {
         local turnserver_source="$source_dir/example/prod/turnserver.conf"
         if [ -f "$turnserver_source" ]; then
             # 从 .env 文件中读取变量并使用 envsubst 替换
+            set -a
             source "$INSTALL_DIR/.env"
+            set +a
             envsubst < "$turnserver_source" > "$INSTALL_DIR/turnserver.conf"
             log_success "turnserver.conf 处理完成"
         else
