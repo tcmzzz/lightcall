@@ -291,7 +291,6 @@ configure_self_signed_cert() {
     done
 }
 
-
 # 配置模拟网关
 configure_fake_gateway() {
     echo
@@ -349,7 +348,7 @@ configure_admin_email() {
 
 # 文件复制和安装
 install_files() {
-    log_info "正在安装文件到 $INSTALL_DIR ..."
+    log_info "正在逐个处理文件..."
 
     # 创建安装目录
     mkdir -p "$INSTALL_DIR"
@@ -368,38 +367,70 @@ install_files() {
         exit 1
     fi
 
-    # 复制 example/prod/ 下除 .env 外的其他文件
-    log_info "正在复制生产环境配置文件..."
-    local prod_dir="$source_dir/example/prod"
-    if [ -d "$prod_dir" ]; then
-        # 复制整个目录，但排除 .env 文件
-        rsync -av --exclude='.env' "$prod_dir/" "$INSTALL_DIR/"
-    else
-        log_error "未找到生产环境配置目录 example/prod"
-        exit 1
-    fi
-
-    # 如果需要模拟网关，复制 example/fake-provider
+    # 1. 处理 fake-provider（如果需要）
     if [ "$FAKE_GATEWAY" = "yes" ]; then
-        log_info "正在复制模拟网关文件..."
+        log_info "正在处理模拟网关文件..."
         local fake_dir="$source_dir/example/fake-provider"
         if [ -d "$fake_dir" ]; then
             mkdir -p "$INSTALL_DIR/fake-provider"
             cp -r "$fake_dir"/* "$INSTALL_DIR/fake-provider/"
+            log_success "模拟网关文件处理完成"
         else
             log_warning "未找到模拟网关目录 example/fake-provider"
         fi
     fi
 
-    # 创建环境配置文件
+    # 2. 处理 Caddyfile
+    log_info "正在处理 Caddyfile..."
+    local caddyfile_source="$source_dir/example/prod/Caddyfile"
+    if [ -f "$caddyfile_source" ]; then
+        cp "$caddyfile_source" "$INSTALL_DIR/Caddyfile"
+        process_caddyfile
+        log_success "Caddyfile 处理完成"
+    else
+        log_warning "未找到 Caddyfile"
+    fi
+
+    # 3. 处理 docker-compose.yaml
+    log_info "正在处理 docker-compose.yaml..."
+    local compose_source="$source_dir/example/prod/docker-compose.yaml"
+    if [ -f "$compose_source" ]; then
+        cp "$compose_source" "$INSTALL_DIR/docker-compose.yaml"
+        process_docker_compose
+        log_success "docker-compose.yaml 处理完成"
+    else
+        log_warning "未找到 docker-compose.yaml"
+    fi
+
+    # 4. 处理 turnserver.conf（仅公网环境）
+    if [ "$ENVIRONMENT" = "public" ]; then
+        log_info "正在处理 turnserver.conf..."
+        local turnserver_source="$source_dir/example/prod/turnserver.conf"
+        if [ -f "$turnserver_source" ]; then
+            cp "$turnserver_source" "$INSTALL_DIR/turnserver.conf"
+            log_success "turnserver.conf 处理完成"
+        else
+            log_warning "未找到 turnserver.conf"
+        fi
+    fi
+
+    # 5. 处理其他 prod 目录文件（config.yaml）
+    log_info "正在处理其他配置文件..."
+    local config_source="$source_dir/example/prod/config.yaml"
+    if [ -f "$config_source" ]; then
+        cp "$config_source" "$INSTALL_DIR/config.yaml"
+        log_success "config.yaml 处理完成"
+    fi
+
+    # 6. 创建 .env 配置文件
     create_config_files
 
-    log_success "文件安装完成"
+    log_success "所有文件处理完成"
 }
 
 # 创建配置文件
 create_config_files() {
-    log_info "正在生成配置文件..."
+    log_info "正在生成 .env 配置文件..."
 
     # 生成 ICE 凭据（公网环境需要）
     if [ "$ENVIRONMENT" = "public" ]; then
@@ -422,10 +453,7 @@ ICE_CREDENTIAL=$ICE_CREDENTIAL
 EOF
     fi
 
-    # 处理 Caddyfile
-    process_caddyfile
-
-    log_success "配置文件生成完成"
+    log_success ".env 配置文件生成完成"
 }
 
 # 处理 Caddyfile
@@ -443,6 +471,40 @@ process_caddyfile() {
         log_success "Caddyfile 处理完成"
     else
         log_warning "未找到 Caddyfile，跳过处理"
+    fi
+}
+
+# 处理 docker-compose.yaml
+process_docker_compose() {
+    log_info "正在处理 docker-compose.yaml..."
+
+    local compose_file="$INSTALL_DIR/docker-compose.yaml"
+
+    if [ -f "$compose_file" ]; then
+
+        # 内网环境：删除 coturn 服务
+        if [ "$ENVIRONMENT" = "internal" ]; then
+            # 使用 awk 更精确地处理，删除 coturn 服务块
+            awk '
+            /^  coturn:/ { in_coturn=1 }
+            in_coturn && /^  [^ ]/ && !/^  coturn:/ { in_coturn=0 }
+            !in_coturn { print }
+            ' "$compose_file" > "$compose_file.tmp" && mv "$compose_file.tmp" "$compose_file"
+        fi
+
+        # 不需要模拟网关：从 fakeprovider 服务开始删除到文件末尾
+        if [ "$FAKE_GATEWAY" = "no" ]; then
+            # 找到 fakeprovider 服务的行号
+            local fakeprovider_line=$(grep -n "^  fakeprovider:" "$compose_file" | cut -d: -f1)
+            if [ -n "$fakeprovider_line" ]; then
+                # 删除从 fakeprovider 行开始到文件末尾的所有内容
+                sed -i "${fakeprovider_line},\$d" "$compose_file"
+            fi
+        fi
+
+        log_success "docker-compose.yaml 处理完成"
+    else
+        log_warning "未找到 docker-compose.yaml，跳过处理"
     fi
 }
 
