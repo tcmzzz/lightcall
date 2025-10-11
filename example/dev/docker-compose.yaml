@@ -59,7 +59,7 @@ services:
   provider:
     restart: always
     build:
-      context: ../fake-privider
+      context: ../fake-provider
       dockerfile: ./Dockerfile
     networks:
       dev-bridge:

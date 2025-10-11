@@ -50,7 +50,7 @@ services:
     profiles:
       - demo
     build:
-      context: ../fake-privider
+      context: ./fake-provider
       dockerfile: ./Dockerfile
     networks:
       dev-bridge:
