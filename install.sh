@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # LightCall 安装脚本
-# 用于下载、配置和安装 LightCall 呼叫中心系统
+# 用于下载、配置和安装 LightCall 外呼系统
 
 set -e
 
@@ -98,6 +98,10 @@ check_dependencies() {
         missing_deps+=("rsync")
     fi
 
+    if ! command -v envsubst &> /dev/null; then
+        missing_deps+=("envsubst")
+    fi
+
     if [ ${#missing_deps[@]} -ne 0 ]; then
         log_error "缺少以下依赖: ${missing_deps[*]}"
         log_info "请先安装缺少的依赖，然后重新运行脚本"
@@ -143,10 +147,8 @@ configure_install_directory() {
         INSTALL_DIR="$user_input"
     fi
 
-    # 转换为绝对路径
-    if [[ "$INSTALL_DIR" != /* ]]; then
-        INSTALL_DIR="$(pwd)/$INSTALL_DIR"
-    fi
+    # 使用 realpath 规范化路径
+    INSTALL_DIR=$(realpath -m "$INSTALL_DIR" 2>/dev/null || echo "$INSTALL_DIR")
 
     log_info "安装目录: $INSTALL_DIR"
 
@@ -367,6 +369,9 @@ install_files() {
         exit 1
     fi
 
+    # 0. 优先创建 .env 配置文件
+    create_config_files
+
     # 1. 处理 fake-provider（如果需要）
     if [ "$FAKE_GATEWAY" = "yes" ]; then
         log_info "正在处理模拟网关文件..."
@@ -407,7 +412,9 @@ install_files() {
         log_info "正在处理 turnserver.conf..."
         local turnserver_source="$source_dir/example/prod/turnserver.conf"
         if [ -f "$turnserver_source" ]; then
-            cp "$turnserver_source" "$INSTALL_DIR/turnserver.conf"
+            # 从 .env 文件中读取变量并使用 envsubst 替换
+            source "$INSTALL_DIR/.env"
+            envsubst < "$turnserver_source" > "$INSTALL_DIR/turnserver.conf"
             log_success "turnserver.conf 处理完成"
         else
             log_warning "未找到 turnserver.conf"
@@ -422,9 +429,6 @@ install_files() {
         log_success "config.yaml 处理完成"
     fi
 
-    # 6. 创建 .env 配置文件
-    create_config_files
-
     log_success "所有文件处理完成"
 }
 
@@ -436,6 +440,7 @@ create_config_files() {
     if [ "$ENVIRONMENT" = "public" ]; then
         ICE_USERNAME=$(generate_random_username)
         ICE_CREDENTIAL=$(generate_random_credential)
+        log_info "生成 ICE 凭据: $ICE_USERNAME / $ICE_CREDENTIAL"
     fi
 
     # 创建 .env 文件
@@ -531,11 +536,19 @@ show_completion_info() {
     echo "2. 检查并修改配置文件（如需要）"
     echo "3. 启动服务: docker-compose up -d"
     echo
+    echo "需要开通下列网络权限:"
+    echo "* 80(tcp): web服务"
+    echo "* 443(tcp): web服务"
+    if [ "$ENVIRONMENT" = "public" ]; then
+        echo "* 3478(tcp,udp): coturn STUN/TURN端口"
+        echo "* 49152-65535(udp): coturn 使用端口"
+    fi
+    echo
     if [ "$SELF_SIGNED_CERT" = "yes" ]; then
         echo "注意：使用自签证书，首次访问时需要在浏览器中信任证书"
     fi
     echo
-    echo "帮助文档: https://github.com/tcmzzz/lightcall"
+    echo "项目主页: https://github.com/tcmzzz/lightcall"
     echo "==============================================="
 }
 
