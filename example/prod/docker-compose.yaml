@@ -2,8 +2,8 @@ services:
   proxy:
     image: caddy
     network_mode: "host"
-    environment:
-      - DOMAIN=${DOMAIN}
+    env_file:
+      - .env
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
     depends_on:
@@ -13,11 +13,8 @@ services:
     restart: always
     image: ghcr.io/tcmzzz/lightcall:master
     network_mode: "host"
-    environment:
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - ICE_URLS=${ICE_URLS}
-      - ICE_USERNAME=${ICE_USERNAME}
-      - ICE_CREDENTIAL=${ICE_CREDENTIAL}
+    env_file:
+      - .env
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ./run/pb_data:/app/pb_data
@@ -40,19 +37,26 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+  coturn:
+    image: ghcr.io/coturn/coturn:4.7.0-r2
+    restart: always
+    network_mode: "host"
+    command: ["--log-file=stdout"]
+    volumes:
+      - ./turnserver.conf:/etc/coturn/turnserver.conf
   # 模拟运营商服务，仅在演示环境中启动
   fakeprovider:
     restart: always
     profiles:
       - demo
     build:
-      context: ../dev/fake-privider
+      context: ../fake-privider
       dockerfile: ./Dockerfile
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.30
 networks:
-  ring-dev-bridge:
+  dev-bridge:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.gateway_mode_ipv4: 'nat'

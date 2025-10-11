@@ -5,7 +5,7 @@ services:
       - ./conf/Caddyfile:/etc/caddy/Caddyfile
       - ./run/proxy-cert:/cert:ro
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.10
   backend:
     restart: always
@@ -23,9 +23,9 @@ services:
       - ./run/tmp:/tmp
       - ./run/proxy-cert/rootCA.pem:/usr/local/share/ca-certificates/customCA.crt:ro # mock cloud api
     extra_hosts:
-      - "ring.dev.local:192.168.66.10"
+      - "lightcall.dev.local:192.168.66.10"
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.11
   frontend:
     restart: always
@@ -38,7 +38,7 @@ services:
     volumes:
       - ../../front:/build
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.12
   freeswitch:
     restart: always
@@ -48,7 +48,7 @@ services:
       - ./run/fs-record:/usr/local/freeswitch/recordings
       - ./run/fs-cert:/cert
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.13
     healthcheck:
       test: ["CMD-SHELL", "fs_cli -x 'sofia status profile internal' | grep wss"]
@@ -59,13 +59,13 @@ services:
   provider:
     restart: always
     build:
-      context: ./fake-privider
+      context: ../fake-privider
       dockerfile: ./Dockerfile
     networks:
-      ring-dev-bridge:
+      dev-bridge:
         ipv4_address: 192.168.66.30
 networks:
-  ring-dev-bridge:
+  dev-bridge:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.gateway_mode_ipv4: 'nat'
