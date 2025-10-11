@@ -1,8 +1,8 @@
-{$DOMAIN:localhost} {
+{$DOMAIN} {
 
     tls internal # 自签名证书，Caddy 会自动生成
 
-	  route /callfs/wss {
+    route /callfs/wss {
         rewrite * /
         reverse_proxy * 127.0.0.1:7443 {
 		      transport http {

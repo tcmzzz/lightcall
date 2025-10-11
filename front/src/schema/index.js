@@ -80,7 +80,7 @@ export const SchemaConfigIce = yup.array().of(
     .object({
       urls: yup.string().label('服务器地址').required(),
       username: yup.string().label('用户名'),
-      redential: yup.string().label('密码')
+      credential: yup.string().label('密码')
     })
     .noUnknown()
 )
