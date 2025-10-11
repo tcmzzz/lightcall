@@ -35,9 +35,21 @@ LightCall 提供了一个完整的呼叫中心解决方案，包括：
 
 ## 运行方式
 
-- 本地部署Demo: [demo](example/demo)
-- 生产环境通过内网访问(TODO)
-- 生产环境通过外网访问(TODO)
+使用脚本初始化配置:
+```bash
+curl -o install.sh -sSL https://raw.githubusercontent.com/tcmzzz/lightcall/refs/heads/master/install.sh
+bash install.sh
+```
+
+进入安装目录后:
+```bash
+docker compose up -d
+```
+
+查看初始化密码:
+```bash
+docker compose logs backend|grep password
+```
 
 
 ## 核心业务流程
